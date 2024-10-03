@@ -1,1 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .container {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+        text-align: center;
+        background-color: #4e4b4b;
+        padding: 20px 30px;
+        border-radius: 20px;
+    }
+
+    .row {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 0px;
+    }
+
+    button {
+        padding: 12px 30px;
+        margin: 5px;
+        font-size: 30px;
+        border-radius: 10px;
+        /* background: transparent;
+        border: none; */
+    }
+
+    input {
+        height: 50px;
+        width: 350px;
+    }
+
+    .row .equle {
+        width: 72%;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <input type="text" id="result">
+
+
+
+        <div class="row">
+            <button id="btn">8</button>
+            <button id="btn">7</button>
+            <button id="btn">9</button>
+            <button id="btn">D</button>
+
+        </div>
+        <div class="row">
+            <button id="btn">4</button>
+            <button id="btn">5</button>
+            <button id="btn">6</button>
+            <button id="btn" class="operator">C</button>
+        </div>
+        <div class="row">
+
+            <button id="btn">1</button>
+            <button id="btn">2</button>
+            <button id="btn">3</button>
+            <button id="btn" class="operator">-</button>
+        </div>
+
+        <div class="row">
+            <button id="btn">.</button>
+            <button id="btn">/</button>
+            <button id="btn">0</button>
+            <button id="btn">+</button>
+
+        </div>
+
+        <div class="row">
+            <button id="btn" class="equle">=</button>
+            <button id="btn" class="operator">*</button>
+            <!-- <button id="btn">0</button>
+            <button id="btn">/</button> -->
+
+        </div>
+    </div>
+</body>
+<script>
+    const buttons = document.querySelectorAll('button')
+    const input = document.querySelector('input')
+    let string = " "
+
+    buttons.forEach((item) => {
+        //   console.log(item);
+        item.addEventListener('click', function (e) {
+            // console.log(e.target);
+            if (e.target.innerText == "=") {
+                string = eval(string)
+                input.value = string
+            }
+            else if (e.target.innerText == "D") {
+                string = string.substring(0, (string.length) - 1)
+                input.value = string
+            }
+            else if (e.target.innerText == "C") {
+                string = ""
+                input.value = string
+            }
+            else {
+                string += e.target.innerText
+                input.value = string
+            }
+        })
+    })
+
+</script>
+
+</html>
